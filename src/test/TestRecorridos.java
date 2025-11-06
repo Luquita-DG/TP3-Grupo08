@@ -7,8 +7,9 @@ import java.util.Map;
 
 // Importamos todos los algoritmos del nuevo paquete
 import recorridos.Dijkstra;
-import recorridos.AStar;
+import recorridos.AEstrella;
 import recorridos.Prim;
+import recorridos.Kruskal;
 import recorridos.FloydWarshall;
 
 public class TestRecorridos {
@@ -39,19 +40,16 @@ public class TestRecorridos {
         
         // uso de getter de nodos
         Map<Persona, INodoGrafo<Persona>> nodosDirigidos = gDirigido.getNodos();
-
-        // --- Prueba Dijkstra ---
+        
         System.out.println("\n--- Ejecutando Dijkstra (desde Juan) ---");
         Dijkstra.ejecutar(gDirigido, p1, nodosDirigidos);
-
-        // --- Prueba A* (A-Estrella) ---
+       
         System.out.println("\n--- Ejecutando A* (de Juan a Maria) ---");
         
-        AStar.Heuristica<Persona> heuristicaCero = (nodoActual, nodoDestino) -> {
+        AEstrella.Heuristica<Persona> heuristicaCero = (nodoActual, nodoDestino) -> {
             return 0; // Heurística simple: no estima nada.
         };
-        AStar.ejecutar(gDirigido, p1, p4, heuristicaCero, nodosDirigidos);
-        // Resultado esperado: Camino: Juan → Luis → Maria, Costo total: 12
+        AEstrella.ejecutar(gDirigido, p1, p4, heuristicaCero, nodosDirigidos);
 
         // --- 3. PRUEBAS EN GRAFO NO DIRIGIDO (para Prim y Floyd) ---
         System.out.println("=================================================");
@@ -67,22 +65,21 @@ public class TestRecorridos {
         gNoDirigido.agregarArista(p1, p3, 10); // Juan <-> Luis  (10)
         gNoDirigido.agregarArista(p2, p4, 7);  // Ana  <-> Maria (7)
         gNoDirigido.agregarArista(p3, p4, 2);  // Luis <-> Maria (2)
-        // Agrego una arista más para que Prim sea más interesante
         gNoDirigido.agregarArista(p2, p3, 1);  // Ana  <-> Luis  (1)
 
-        // jjhhjjhhUsamos el getter de nuevo
+        // Usamos el getter de nuevo
         Map<Persona, INodoGrafo<Persona>> nodosNoDirigidos = gNoDirigido.getNodos();
 
         // --- Prueba Prim (Árbol de Expansión Mínima) ---
         System.out.println("\n--- Ejecutando Prim (MST) ---");
         Prim.ejecutar(gNoDirigido, nodosNoDirigidos);
-        // Resultado esperado: aristas (p2-p3, 1), (p3-p4, 2), (p1-p2, 5)
-        // Peso total = 1 + 2 + 5 = 8
+
+        // --- Prueba Kruskal (Árbol de Expansión Mínima) ---
+        System.out.println("\n--- Ejecutando Kruskal (MST) ---");
+        Kruskal.ejecutar(gNoDirigido, nodosNoDirigidos);
 
         // --- Prueba Floyd-Warshall (Todos los Pares) ---
         System.out.println("\n--- Ejecutando Floyd-Warshall (Todos los pares) ---");
         FloydWarshall.ejecutar(gNoDirigido, nodosNoDirigidos);
-        // Resultado esperado: Matriz con todos los caminos mínimos.
-        // Ej: Juan(p1) a Maria(p4) será 1+2 = 3 (vía p2, p3)
     }
 }
