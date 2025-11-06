@@ -37,5 +37,9 @@ public class TestGrafo {
         for (Map.Entry<Persona, Grafo.Camino<Persona>> e : resultado.entrySet()) {
             System.out.println("Desde " + p1.getNombre() + " hasta " + e.getKey().getNombre() + " -> " + e.getValue());
         }
+        g.mostrarMatrizAdyacencia();
+        System.out.println();
+        g.dfs(p1);                   
+        System.out.println();
     }
 }
