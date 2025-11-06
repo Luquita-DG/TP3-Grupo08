@@ -137,9 +137,6 @@ public class Grafo<T> implements IGrafo<T> {
             throw new IllegalArgumentException("El nodo de inicio '" + inicio + "' no existe en el grafo.");
         }
         Set<T> visitados = new HashSet<>();
-    }
-
-        Set<T> visitados = new HashSet<>();
         System.out.println("Recorrido DFS:");
         dfsRec(nodos.get(inicio), visitados);
         System.out.println();
@@ -203,5 +200,9 @@ public class Grafo<T> implements IGrafo<T> {
             }
         }
         return resultados;
+    }
+
+    public Map<T, INodoGrafo<T>> getNodos() {
+        return nodos;
     }
 }

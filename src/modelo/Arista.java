@@ -10,4 +10,12 @@ public class Arista<T> {
         this.destino = destino;
         this.peso = peso;
     }
+
+    public INodoGrafo<T> getDestino() {
+        return destino;
+    }
+
+    public int getPeso() {
+        return peso;
+    }
 }

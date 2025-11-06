@@ -9,7 +9,7 @@ import modelo.Grafo;
  * A* (A estrella): encuentra un camino corto desde un inicio hasta un objetivo
  * guiándose con una heurística (g + h).
  */
-public class AStar<T> {
+public class AEstrella<T> {
 
     /** Heurística: estima la distancia del nodo actual al objetivo. */
     public interface Heuristica<T> {

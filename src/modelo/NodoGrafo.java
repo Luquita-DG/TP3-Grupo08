@@ -3,7 +3,6 @@ package modelo;
 import interfaces.INodoGrafo;
 import java.util.ArrayList;
 import java.util.List;
-import modelo.Arista;
 
 public class NodoGrafo<T> implements INodoGrafo<T> {
 
