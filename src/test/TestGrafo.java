@@ -42,17 +42,18 @@ public class TestGrafo {
         g.dfs(p1);                   
         System.out.println();
 
-        // --- PROBAR EL MANEJO DE ERRORES (try-catch) ---
+        // --- PROBAR EL MANEJO DE ERRORES (try-catch) --
         System.out.println("\n--- Probando manejo de error (try-catch) ---");
         try {
-        // Intentamos buscar un nodo que NO existe
+            // Intentamos buscar un nodo que NO existe
             System.out.println("Intentando recorrer desde un nodo inexistente...");
             g.bfs(new Persona("999", "Inexistente", "", 0));
         } catch (IllegalArgumentException e) {
-            // Si el 'throw' funciona, el 'catch' lo atrapa
             System.err.println("¡Error capturado con éxito!");
-            System.err.println(e.getMessage()) }
+            System.err.println(e.getMessage());
+        }
     }
 }
-}
+
+
 
